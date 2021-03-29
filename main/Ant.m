@@ -1,6 +1,7 @@
 classdef Ant
     properties
-        location {x,y}
+        xlocation {x}
+        ylocation {y}
     end
     methods
     end
