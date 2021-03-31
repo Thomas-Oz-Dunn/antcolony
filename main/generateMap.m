@@ -1,16 +1,13 @@
-clear;
-clc;
-size = 64;
-
-mapGen = perlin2D(size);
-for i = 1:size
-    for j = 1:size
-        if mapGen(i,j) > 0.5
-            mapGen(i,j) = 1;
-        else
-            mapGen(i,j) = 0;
+function map = generateMap(size)
+    map = perlin2D(size);
+    for i = 1:size
+        for j = 1:size
+            if map(i,j) > 0.5
+                map(i,j) = 1; %Walls
+            else
+                map(i,j) = 0; %Paths
+            end
         end
     end
 end
-x = image(mapGen,'CDataMapping','scaled');
-disp(x)
+% map = image(mapGen,'CDataMapping','scaled'); for visuals
