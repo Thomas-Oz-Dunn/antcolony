@@ -22,7 +22,7 @@ classdef Ant
         end
         
         %Write out ideas in pseudocode
-        %Look at three spaces ahead of it
+        %Look at three spaces ahead of it            
         %If hasFound = false & food = true, move there first priority,
             %leave posTrail
         %If hasFound = false & posTrail = true, move there second priority
