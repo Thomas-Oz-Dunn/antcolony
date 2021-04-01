@@ -1,5 +1,5 @@
-function map = generateMap(size)
-    map = perlin2D(size);
+function map = generateMap(size,detail)
+    map = perlin2D(size,detail);
     for i = 1:size
         for j = 1:size
             if map(i,j) > 0.5
