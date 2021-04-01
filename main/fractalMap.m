@@ -1,4 +1,5 @@
-function map = fractalMap(size,min_detail,max_detail,weight1,weight2,threshold)
+function map = fractalMap(size,min_detail,max_detail,weight1,weight2)
+    
     map = zeros([size,size]);
     map1 = perlin2D(size,min_detail);
     map2 = perlin2D(size,max_detail);
@@ -6,9 +7,9 @@ function map = fractalMap(size,min_detail,max_detail,weight1,weight2,threshold)
         for j = 1:size
             map(i,j) = (weight1*map1(i,j) + weight2*map2(i,j))/2;
             if map(i,j) > threshold
-                map(i,j) = 1; %Walls
+                map(i,j) = 1; 
             else
-                map(i,j) = 0; %Paths
+                map(i,j) = 0; 
             end
             if (i<size) && (j<size)
                 if ((map(i+1,j) == 1) && (map(i+1,j) == 1)) || ((map(i,j+1) == 1) && (map(i,j-1) == 1))

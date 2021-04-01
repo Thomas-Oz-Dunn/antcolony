@@ -2,8 +2,10 @@ clear;
 clc;
 
 %Generate the world
-WorldMap = fractalMap(100,3,40,1.2,0.3,0.4);
+land = fractalMap(100,3,10,1.2,0.3);
+veg = vegMap(land);
 
- map = image(WorldMap,'CDataMapping','scaled');
- disp(map)
- colorbar
+
+map = image(land,'CDataMapping','scaled');
+disp(map)
+colorbar
