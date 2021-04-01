@@ -1,4 +1,4 @@
-function map = fractalMap(size,min_detail,max_detail,weight1,weight2)
+function map = fractalMap(size,min_detail,max_detail,weight1,weight2,threshold)
     
     map = zeros([size,size]);
     map1 = perlin2D(size,min_detail);
