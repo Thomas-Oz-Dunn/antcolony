@@ -2,7 +2,8 @@ clear;
 clc;
 
 %Generate the world
-WorldMap = zeros(100,100);
-a = Ant;
-a.xlocation = 1;
-a.ylocation = 5;
+WorldMap = fractalMap(100,3,40,1.2,0.3,0.4);
+
+ map = image(WorldMap,'CDataMapping','scaled');
+ disp(map)
+ colorbar
