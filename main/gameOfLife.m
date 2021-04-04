@@ -5,7 +5,7 @@ Next = zeros(w,h);
 
 for i = 1:w
     for j = 1:h
-        
+        %Edge Cases
         %================================================================
         if i>1 && j > 1 && i < w && j < h %All four clear
             sumSurround = Prev(i-1,j) + Prev(i+1,j) + Prev(i,j+1) + Prev(i,j-1);
