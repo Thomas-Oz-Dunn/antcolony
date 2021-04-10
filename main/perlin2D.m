@@ -1,6 +1,5 @@
 function map = perlin2D (map_size,detail)
-    
-    map = zeros([map_size,map_size]);     % Prepare output image (size: m x m)
+    map = spares(map_size,map_size);     % Prepare output image (size: m x m)
     w = map_size;
     i = 0;
     while w > detail
