@@ -3,16 +3,15 @@ import numpy
 
 class Map
 	"an environment class"
-	def __init__(self,size,walls,food_locations)
-
-	self.size = size
-	self.walls = walls
-	self.food_locations = food_locations
+	def __init__(self,size)
+		self.size = size
 
 	"Generate square map of size size"
-	self.canvas = np.zeros(size,size)
+	self.canvas = np.zeros(self.size,self.size)
+
 
 	"Run perlin noise to generate random pockets of rock"
+	def GenerateCave(self)
 
 	"Overlay multiple for cave system gradient"
 	"Filter gradient through threshold value for binary open vs solid"
