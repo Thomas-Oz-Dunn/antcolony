@@ -1,4 +1,5 @@
 import ant
+import numpy
 
 class Map
 	"an environment class"
@@ -8,9 +9,13 @@ class Map
 	self.walls = walls
 	self.food_locations = food_locations
 
-	"input dimensions of map"
+	"Generate square map of size size"
+	self.canvas = np.zeros(size,size)
+
 	"Run perlin noise to generate random pockets of rock"
-	"overlay multiple for cave system gradient"
-	"assign walls based on border between black and white"
+
+	"Overlay multiple for cave system gradient"
+	"Filter gradient through threshold value for binary open vs solid"
 	"Run perlin noise to generate random pockets of food"
 	"If open air & food, food @ coordinates"
+	"Spawn ant colony"
