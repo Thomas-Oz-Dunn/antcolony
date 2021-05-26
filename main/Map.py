@@ -1,17 +1,19 @@
 import ant
-import numpy
+import numpy as np
+import perlin
 
 class Map
 	"an environment class"
 	def __init__(self,size)
 		self.size = size
 
-	"Generate square map of size size"
-	self.canvas = np.zeros(self.size,self.size)
+	def GenerateMap(self):
+		"Generate square map of size size and random values"
+		self.canvas = np.random.rand(self.size,self.size)
+		"interpolate"
+	
 
-
-	"Run perlin noise to generate random pockets of rock"
-	def GenerateCave(self)
+		
 
 	"Overlay multiple for cave system gradient"
 	"Filter gradient through threshold value for binary open vs solid"

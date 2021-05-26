@@ -1,3 +1,5 @@
+import numpy as np 
+
 class Ant:
 	"An ant class"
 	"All ants start with 100 energy"
