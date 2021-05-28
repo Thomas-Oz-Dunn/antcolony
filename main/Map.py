@@ -17,7 +17,7 @@ class Map
 					"Open"
 					self.canvas[i,j] = 0
 				else:
-					"Wall"
+					"Walls"
 					self.canvas[i,j] = 1
 
 	

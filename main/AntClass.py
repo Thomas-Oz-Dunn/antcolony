@@ -148,11 +148,12 @@ class Ant:
 
 			"fourth, wander randomly"
 
-
-
 	def move(self):
-		left,center,right = orient2coords(self.nextorient,self.x,self.y)
+		l,center,r = orient2coords(self.nextorient,self.x,self.y)
 		self.location = center
+		self.energy--
+		if foodmap[self.location]:
+			Foodstatus = 1
 
 		"Move towards food trail or food plus random wobble"
 		"Decrement energy"

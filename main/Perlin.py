@@ -8,7 +8,13 @@ def Perlin(x,y):
 
 	def dotGridGrad(ix,iy,x,y):
 		vec = np.random.rand(1)
-		gradient = (x = cos(vec), y = sin(vec))
+		ran = np.random.rand(1)
+		if ran > 0.5:
+			vec = vec * -1
+
+		x = cos(vec)
+		y = sin(vec)
+		gradient = [x, y]
 		dx = x - ix
 		dy = y - iy
 		return dx*gradient.x + dy*gradient.y
@@ -31,5 +37,3 @@ def Perlin(x,y):
 
 	value = interpolate(ix0,ix1,sy)
 	return value
-
-Perlin(1,6)
