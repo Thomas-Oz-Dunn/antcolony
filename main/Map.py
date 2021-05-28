@@ -9,8 +9,17 @@ class Map
 
 	def GenerateMap(self):
 		"Generate square map of size size and random values"
-		self.canvas = np.random.rand(self.size,self.size)
-		"interpolate"
+		self.canvas = numpy.zeros(self.size,self.size)
+		for i in range(1,self.size):
+			for j in range(1,self.size):
+				self.canvas[i,j] = Perlin(i,j)
+				if self.canvas[i,j] < 0.5 :
+					"Open"
+					self.canvas[i,j] = 0
+				else:
+					"Wall"
+					self.canvas[i,j] = 1
+
 	
 
 		
