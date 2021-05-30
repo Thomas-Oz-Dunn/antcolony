@@ -1,5 +1,5 @@
 import numpy as np 
-import map
+import Map.py
 
 class Ant:
 	"An ant class"
@@ -19,7 +19,7 @@ class Ant:
 		"Boolean food value, 0 false, 1 true"
 		self.Foodstatus = 0
 
-	def orient2coords(orient,x,y):
+	def o2cart(orient,x,y):
 		"Define left, center, right"
 		switch(orient){
 			"N"
@@ -68,117 +68,93 @@ class Ant:
 
 	def search(self,world):
 		self.nextorient = self.orient
-		self.left, self.center, self.right = orient2coords(self.orient,self.location)
+		self.left, self.center, self.right = o2cart(self.orient,self.location)
 		ran = np.random.rand(1)
 		if (self.Foodstatus = 0):
-			"first, go for food"
+
+			"if not have food, first, go for food"
 			if (world[self.left] = 2 and world[self.center] = 2 and world[self.right] = 2):
 				if ran < 0.33:
-					if (self.orient = 1): 
-						self.nextorient = 8
-					else: 
-						self.nextorient--
+					if (self.orient = 1): self.nextorient = 8
+					else: self.nextorient--
 				elif ran > 0.33:
-					if (self.orient = 8): 
-						self.nextorient = 1
-					else: 
-						self.nextorient++
-				else:
-					self.nextorient = self.orient
+					if (self.orient = 8): self.nextorient = 1
+					else: self.nextorient++
+				else: self.nextorient = self.orient
+
 			elif (world[self.left] = 2 and world[self.center] = 2):
 				if ran < 0.5:
-					if (self.orient = 1): 
-						self.nextorient = 8
-					else: 
-						self.nextorient--
-				else:
-					self.nextorient = self.orient
+					if (self.orient = 1): self.nextorient = 8
+					else: self.nextorient--
+				else: self.nextorient = self.orient
+
 			elif (world[self.right] = 2 and world[self.center] = 2):
 				if ran < 0.5:
-					if (self.orient = 8): 
-						self.nextorient = 1
-					else: 
-						self.nextorient++
-				else:
-					self.nextorient = self.orient
+					if (self.orient = 8): self.nextorient = 1
+					else: self.nextorient++
+				else: self.nextorient = self.orient
+
 			elif (world[self.left] = 2 and world[self.right] = 2):
 				if ran < 0.5:
-					if (self.orient = 1): 
-						self.nextorient = 8
-					else: 
-						self.nextorient--
+					if (self.orient = 1): self.nextorient = 8
+					else: self.nextorient--
 				else:
-					if (self.orient = 8): 
-						self.nextorient = 1
-					else: 
-						self.nextorient++
+					if (self.orient = 8): self.nextorient = 1
+					else: self.nextorient++
+
 			elif (world[self.left] = 2):
-				if (self.orient = 1): 
-					self.nextorient = 8
-				else: 
-					nextorient--
+				if (self.orient = 1): self.nextorient = 8
+				else: nextorient--
+
 			elif (world[self.right] = 2):
-				if (self.orient = 8): 
-					self.nextorient = 1
-				else: 
-					self.nextorient++
+				if (self.orient = 8): self.nextorient = 1
+				else: self.nextorient++
+
 			elif (world[self.center] = 2):
 				self.nextorient = self.orient
-			"second, follow the food trail"
+
+			"if not have food, second, follow the food trail"
 			elif (world[self.left] = 3 and world[self.center] = 3 and trailmap[self.right] = 3):
 				if ran < 0.33:
-					if (self.orient = 1): 
-						self.nextorient = 8
-					else: 
-						self.nextorient--
+					if (self.orient = 1): self.nextorient = 8
+					else: self.nextorient--
 				elif ran > 0.33:
-					if (self.orient = 8): 
-						self.nextorient = 1
-					else: 
-						self.nextorient++
-				else:
-					self.nextorient = self.orient
+					if (self.orient = 8): self.nextorient = 1
+					else: self.nextorient++
+				else: self.nextorient = self.orient
+
 			elif (world[self.left] = 3 and world[self.center] = 3):
 				if ran < 0.5:
-					if (self.orient = 1): 
-						self.nextorient = 8
-					else: 
-						self.nextorient--
-				else:
-					self.nextorient = self.orient
-			elif (trailmap[self.right] = 3 and trailmap[self.center] = 3):
+					if (self.orient = 1): self.nextorient = 8
+					else: self.nextorient--
+				else: self.nextorient = self.orient
+
+			elif (world[self.right] = 3 and world[self.center] = 3):
 				if ran < 0.5:
-					if (self.orient = 8): 
-						self.nextorient = 1
-					else: 
-						self.nextorient++
-				else:
-					self.nextorient = self.orient
-			elif (trailmap[self.left] = 3 and trailmap[self.right] = 3):
+					if (self.orient = 8): self.nextorient = 1
+					else: self.nextorient++
+				else: self.nextorient = self.orient
+
+			elif (world[self.left] = 3 and world[self.right] = 3):
 				if ran < 0.5: 
-					if (self.orient = 1): 
-						self.nextorient = 8
-					else: 
-						self.nextorient--
+					if (self.orient = 1): self.nextorient = 8
+					else: self.nextorient--
 				else:
-					if (self.orient = 8): 
-						self.nextorient = 1
-					else: 
-						self.nextorient++
-			elif (trailmap[self.left]):
-				if (self.orient = 1): 
-					self.nextorient = 8
-				else: 
-					nextorient--
-			elif (trailmap[self.right]):
-				if (self.orient = 8): 
-					self.nextorient = 1
-				else: 
-					self.nextorient++
-			elif (trailmap[self.center]):
+					if (self.orient = 8): self.nextorient = 1
+					else: self.nextorient++
+
+			elif (world[self.left] = 3):
+				if (self.orient = 1): self.nextorient = 8
+				else: nextorient--
+
+			elif (world[self.right] = 3):
+				if (self.orient = 8): self.nextorient = 1
+				else: self.nextorient++
+
+			elif (world[self.center] = 3):
 				self.nextorient = self.orient
 
-			"third, avoid walls"
+			"without food, third, avoid walls"
 				"If left  = wall, nextorient ++"
 					"if orient = 8, nextorient = 1"
 				"if right = wall, orient --"
@@ -187,18 +163,29 @@ class Ant:
 
 			"if 2 or 3 directions, random from true, always perpindicular"
 
-			"fourth, wander randomly"
+			"without food, fourth, wander randomly"
+
+		"with food, first, follow return trail"
+		"with food, second, avoid walls"
 
 	def move(self,world):
-		l,center,r = orient2coords(self.nextorient,self.x,self.y)
+		"Oreint based on next location values"
+		l,center,r = o2cart(self.nextorient,self.x,self.y)
+
+		"Moving forward"
 		self.location = center
+
+		"Decrease Energy"
 		self.energy--
-		if world[self.location] = 2:
-			self.Foodstatus = 1
-			world[self.location] = 3
 
-		elif world[self.location] = 3:
+		"If there be food, grab it"
+		if world[self.location] = 2: self.Foodstatus = 1
 
+		"If have food, leave food trail"
+		if self.Foodstatus = 1: world[self.location] = 3
+
+		"Else leave return trail"
+		else: world[self.location] = 4
 
 		"leave a trail behind"
 

@@ -9,23 +9,24 @@ class Map
 
 	def GenerateMap(self):
 		"Generate square map of size size and random values"
-		self.canvas = numpy.zeros(self.size,self.size)
+		canvas = numpy.zeros(self.size,self.size)
 		for i in range(1,self.size):
 			for j in range(1,self.size):
-				self.canvas[i,j] = Perlin(i,j)
-				if self.canvas[i,j] < 0.5 :
+				canvas[i,j] = Perlin(i,j)
+				if canvas[i,j] < 0.5 :
 					"Open"
-					self.canvas[i,j] = 0
-				else:
+					canvas[i,j] = 0
+				elif canvas[i,j] > 0.5:
 					"Walls"
-					self.canvas[i,j] = 1
+					canvas[i,j] = 1
+				else:
+					canvas[i,j] = 2
+		return canvas
 
 	
-
-		
-
 	"Overlay multiple for cave system gradient"
 	"Filter gradient through threshold value for binary open vs solid"
 	"Run perlin noise to generate random pockets of food"
 	"If open air & food, food @ coordinates"
 	"Spawn ant colony"
+	"Trail dissipation over time"
