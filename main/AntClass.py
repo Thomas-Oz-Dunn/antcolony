@@ -1,4 +1,5 @@
 import numpy as np 
+import map
 
 class Ant:
 	"An ant class"
@@ -126,6 +127,59 @@ class Ant:
 				self.nextorient = self.orient
 
 			"second, follow the trail"
+			elif (trailmap[self.left] and trailmap[self.center] and trailmap[self.right]):
+				if ran < 0.33:
+					if (self.orient = 1): 
+						self.nextorient = 8
+					else: 
+						self.nextorient--
+				elif ran > 0.33:
+					if (self.orient = 8): 
+						self.nextorient = 1
+					else: 
+						self.nextorient++
+				else:
+					self.nextorient = self.orient
+			elif (trailmap[self.left] and trailmap[self.center]):
+				if ran < 0.5:
+					if (self.orient = 1): 
+						self.nextorient = 8
+					else: 
+						self.nextorient--
+				else:
+					self.nextorient = self.orient
+			elif (trailmap[self.right] and trailmap[self.center]):
+				if ran < 0.5:
+					if (self.orient = 8): 
+						self.nextorient = 1
+					else: 
+						self.nextorient++
+				else:
+					self.nextorient = self.orient
+			elif (trailmap[self.left] and trailmap[self.right]):
+				if ran < 0.5:
+					if (self.orient = 1): 
+						self.nextorient = 8
+					else: 
+						self.nextorient--
+				else:
+					if (self.orient = 8): 
+						self.nextorient = 1
+					else: 
+						self.nextorient++
+			elif (trailmap[self.left]):
+				if (self.orient = 1): 
+					self.nextorient = 8
+				else: 
+					nextorient--
+			elif (trailmap[self.right]):
+				if (self.orient = 8): 
+					self.nextorient = 1
+				else: 
+					self.nextorient++
+			elif (trailmap[self.center]):
+				self.nextorient = self.orient
+				
 				"if left, right , & center, random between"
 				"If left & right, random between"
 				"if left & center, random between"
@@ -154,6 +208,7 @@ class Ant:
 		self.energy--
 		if foodmap[self.location]:
 			Foodstatus = 1
+			foodmap[self.location] = 0
 
 		"Move towards food trail or food plus random wobble"
 		"Decrement energy"
