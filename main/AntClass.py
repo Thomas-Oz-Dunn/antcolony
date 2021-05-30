@@ -66,14 +66,13 @@ class Ant:
 
 		return left, forward, right
 
-	def search(self):
+	def search(self,world):
 		self.nextorient = self.orient
 		self.left, self.center, self.right = orient2coords(self.orient,self.location)
 		ran = np.random.rand(1)
-
 		if (self.Foodstatus = 0):
 			"first, go for food"
-			if (foodmap[self.left] and foodmap[self.center] and foodmap[self.right]):
+			if (world[self.left] = 2 and world[self.center] = 2 and world[self.right] = 2):
 				if ran < 0.33:
 					if (self.orient = 1): 
 						self.nextorient = 8
@@ -86,7 +85,7 @@ class Ant:
 						self.nextorient++
 				else:
 					self.nextorient = self.orient
-			elif (foodmap[self.left] and foodmap[self.center]):
+			elif (world[self.left] = 2 and world[self.center] = 2):
 				if ran < 0.5:
 					if (self.orient = 1): 
 						self.nextorient = 8
@@ -94,7 +93,7 @@ class Ant:
 						self.nextorient--
 				else:
 					self.nextorient = self.orient
-			elif (foodmap[self.right] and foodmap[self.center]):
+			elif (world[self.right] = 2 and world[self.center] = 2):
 				if ran < 0.5:
 					if (self.orient = 8): 
 						self.nextorient = 1
@@ -102,7 +101,7 @@ class Ant:
 						self.nextorient++
 				else:
 					self.nextorient = self.orient
-			elif (foodmap[self.left] and foodmap[self.right]):
+			elif (world[self.left] = 2 and world[self.right] = 2):
 				if ran < 0.5:
 					if (self.orient = 1): 
 						self.nextorient = 8
@@ -113,21 +112,20 @@ class Ant:
 						self.nextorient = 1
 					else: 
 						self.nextorient++
-			elif (foodmap[self.left]):
+			elif (world[self.left] = 2):
 				if (self.orient = 1): 
 					self.nextorient = 8
 				else: 
 					nextorient--
-			elif (foodmap[self.right]):
+			elif (world[self.right] = 2):
 				if (self.orient = 8): 
 					self.nextorient = 1
 				else: 
 					self.nextorient++
-			elif (foodmap[self.center]):
+			elif (world[self.center] = 2):
 				self.nextorient = self.orient
-
-			"second, follow the trail"
-			elif (trailmap[self.left] and trailmap[self.center] and trailmap[self.right]):
+			"second, follow the food trail"
+			elif (world[self.left] = 3 and world[self.center] = 3 and trailmap[self.right] = 3):
 				if ran < 0.33:
 					if (self.orient = 1): 
 						self.nextorient = 8
@@ -179,17 +177,6 @@ class Ant:
 					self.nextorient++
 			elif (trailmap[self.center]):
 				self.nextorient = self.orient
-				
-				"if left, right , & center, random between"
-				"If left & right, random between"
-				"if left & center, random between"
-				"if center & right, random between"
-
-				"If left = foodtrail, nextorient --"
-					"if orient = 1, nextorient = 8"
-				"if right = foodtrail, nextorient ++"
-					"if orient = 8, nextorient = 1"
-				"if center = foodtrail, nextorient = orient"
 
 			"third, avoid walls"
 				"If left  = wall, nextorient ++"
