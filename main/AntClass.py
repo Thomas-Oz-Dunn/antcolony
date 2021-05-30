@@ -138,7 +138,7 @@ class Ant:
 						self.nextorient++
 				else:
 					self.nextorient = self.orient
-			elif (trailmap[self.left] and trailmap[self.center]):
+			elif (world[self.left] = 3 and world[self.center] = 3):
 				if ran < 0.5:
 					if (self.orient = 1): 
 						self.nextorient = 8
@@ -146,7 +146,7 @@ class Ant:
 						self.nextorient--
 				else:
 					self.nextorient = self.orient
-			elif (trailmap[self.right] and trailmap[self.center]):
+			elif (trailmap[self.right] = 3 and trailmap[self.center] = 3):
 				if ran < 0.5:
 					if (self.orient = 8): 
 						self.nextorient = 1
@@ -154,8 +154,8 @@ class Ant:
 						self.nextorient++
 				else:
 					self.nextorient = self.orient
-			elif (trailmap[self.left] and trailmap[self.right]):
-				if ran < 0.5:
+			elif (trailmap[self.left] = 3 and trailmap[self.right] = 3):
+				if ran < 0.5: 
 					if (self.orient = 1): 
 						self.nextorient = 8
 					else: 
@@ -189,13 +189,18 @@ class Ant:
 
 			"fourth, wander randomly"
 
-	def move(self):
+	def move(self,world):
 		l,center,r = orient2coords(self.nextorient,self.x,self.y)
 		self.location = center
 		self.energy--
-		if foodmap[self.location]:
-			Foodstatus = 1
-			foodmap[self.location] = 0
+		if world[self.location] = 2:
+			self.Foodstatus = 1
+			world[self.location] = 3
+
+		elif world[self.location] = 3:
+
+
+		"leave a trail behind"
 
 		"Move towards food trail or food plus random wobble"
 		"Decrement energy"
