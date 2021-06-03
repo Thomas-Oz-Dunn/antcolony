@@ -165,26 +165,47 @@ class Ant:
 			elif (world[self.center] = 3):
 				nextorient = self.orient
 
-			"without food, third, avoid walls"
-			"If left  = wall, nextorient ++"
-					"if orient = 8, nextorient = 1"
-				"if right = wall, orient --"
-					"if orient = 1, orient = 8"
-				"if center = wall, nextorient +- 4"
-
+			"third, avoid walls"
 			elif (world[self.left] = 1 and world[self.center] = 1 and world[self.right] = 1):
-				nextorient + 4
+				if self.orient <= 4: nextorient = nextorient + 4
+				elif self.orient > 4: nextorient = nextorient - 4
+
 			elif (world[self.left] = 1 and world[self.center] = 1):
+				"go right"
+				if (self.orient = 8): nextorient = 1
+				else: nextorient++
 
 			elif (world[self.right] = 1 and world[self.center] = 1):
+				"go left"
+				if (self.orient = 1): nextorient = 8
+				else: nextorient--
 
 			elif (world[self.left] = 1 and world[self.right] = 1):
+				"Go forward"
+				nextorient = self.orient
 
 			elif (world[self.left] = 1):
+				"Go right or forward"
+				if ran < 0.5:
+					if (self.orient = 8): nextorient = 1
+					else: nextorient++
+				else: nextorient = self.orient
 
 			elif (world[self.right] = 1):
+				"Go left or forward"
+				if ran < 0.5:
+					if (self.orient = 1): nextorient = 8
+					else: nextorient--
+				else: nextorient = self.orient
 
 			elif (world[self.center] = 1):
+				"Go left or right"
+				if ran < 0.5:
+					if (self.orient = 1): nextorient = 8
+					else: nextorient--
+				else:
+					if (self.orient = 8): nextorient = 1
+					else: nextorient++					
 
 
 			"without food, fourth, wander randomly"
