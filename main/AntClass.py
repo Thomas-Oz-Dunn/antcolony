@@ -247,7 +247,7 @@ class Ant:
 		"Else leave return trail"
 		else: world[previous] = 4
 
-		"Decrement energy"
+		
 
 	"If food, take or eat food, depending on energy level"
 	"If no food or food trail, move in random direction forward"
