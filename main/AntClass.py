@@ -21,6 +21,9 @@ class Ant:
 		"Boolean food value, 0 false, 1 true"
 		self.Foodstatus = 0
 
+		"Hunger threshold where this ant will start eating"
+		self.SelfPreservation = np.random.rand(1) * 100
+
 	def o2cart(orient,x,y):
 
 		"Define left, center, right"
@@ -72,13 +75,13 @@ class Ant:
 	def search(self,world):
 
 		"Default nextorient = forward"
-		nextorient = self.oriente
+		nextorient = self.orient
 
 		"Conver internal Orientation to Global coordinates"
 		self.left, self.center, self.right = o2cart(self.orient,self.location)
 
 		"Random number for decision making"
-		ran = np.random.rand(1)
+		
 
 		"If not with food yet"
 		if (self.Foodstatus = 0):
@@ -238,16 +241,22 @@ class Ant:
 		"Decrease Energy"
 		self.energy--
 
-		"If there be food, grab it"
+		"If there be food, grab it" 
 		if world[self.location] = 2: self.Foodstatus = 1
 
 		"If have food, leave food trail"
-		if self.Foodstatus = 1: world[previous] = 3
+		if self.Foodstatus = 1: 
+			if self.energy < self.SelfPreservation 
+				self.Foodstatus = 0
+				self.energy = self.energy + 10
+				world[previous] = 4
+			else: world[previous] = 3
 
 		"Else leave return trail"
 		else: world[previous] = 4
 
 		
+
 
 	"If food, take or eat food, depending on energy level"
 	"If no food or food trail, move in random direction forward"
